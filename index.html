@@ -3,17 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>بوابة الوزارات والخدمات | مملكة PeaceLand</title>
+<meta name="theme-color" content="#103c2e">
+<title>بوابة الوزارات والخدمات الحكومية | PeaceLand</title>
+
 <style>
-:root {
+:root{
   --green:#103c2e;
   --green2:#185440;
   --gold:#d5b46a;
   --cream:#f7f4eb;
   --white:#fff;
   --text:#20342b;
+  --red:#a52d2d;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
@@ -21,105 +25,164 @@ body{
   color:var(--text);
 }
 header{
-  background:linear-gradient(135deg,#0b2b22,#185440);
+  background:linear-gradient(135deg,#09291f,#185440);
   color:white;
-  padding:30px 18px;
+  padding:30px 16px;
   text-align:center;
   border-bottom:4px solid var(--gold);
 }
 .emblem{
-  width:75px;height:75px;
+  width:76px;height:76px;
   border:2px solid var(--gold);
   border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   margin:auto auto 12px;
-  font-size:36px;
+  font-size:35px;
 }
-header h1{margin:8px 0;color:#f2d58d;font-size:27px}
-header p{margin:8px 0}
+header h1{margin:8px 0;color:#f2d58d}
+header p{margin:8px 0;line-height:1.7}
 nav{
   background:#09291f;
-  display:flex;justify-content:center;
-  gap:10px;flex-wrap:wrap;padding:13px;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  padding:12px;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 nav a{
-  color:white;text-decoration:none;
-  padding:9px 14px;border-radius:6px;
+  color:white;
+  text-decoration:none;
+  padding:10px 13px;
+  border-radius:6px;
+  font-size:14px;
 }
 nav a:hover{background:var(--green2)}
 .hero{
-  text-align:center;padding:35px 15px 20px;
+  text-align:center;
+  padding:32px 16px;
 }
-.hero h2{color:var(--green);font-size:25px}
-.hero p{line-height:1.9}
+.hero h2{color:var(--green);font-size:26px}
+.hero p{line-height:2;max-width:750px;margin:auto}
 .container{max-width:1150px;margin:auto;padding:18px}
+.section-title{
+  color:var(--green);
+  border-right:5px solid var(--gold);
+  padding-right:12px;
+  margin:30px 0 18px;
+}
 .search{
-  display:block;width:100%;padding:14px;
-  border:1px solid #ccc;border-radius:9px;
-  font-size:16px;margin:12px 0 22px;
+  width:100%;
+  padding:14px;
+  border:1px solid #ccc;
+  border-radius:9px;
+  font-size:16px;
+  margin:12px 0 20px;
 }
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:17px;
+  grid-template-columns:repeat(auto-fit,minmax(235px,1fr));
+  gap:16px;
 }
 .card{
-  background:white;border:1px solid #e5dfcf;
-  border-radius:12px;padding:20px;
-  box-shadow:0 4px 12px #0000000b;
+  background:white;
+  border:1px solid #e5dfcf;
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 4px 12px #0000000a;
 }
-.card h3{color:var(--green);margin-top:0}
+.card h3{color:var(--green);margin-top:0;line-height:1.7}
 .card p{line-height:1.8;font-size:14px}
 button,.button{
-  border:0;border-radius:7px;
-  padding:11px 15px;background:var(--green);
-  color:white;cursor:pointer;font-size:14px;
-  text-decoration:none;display:inline-block;
+  border:0;
+  border-radius:7px;
+  padding:12px 15px;
+  background:var(--green);
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+  font-family:inherit;
 }
 button:hover,.button:hover{background:var(--green2)}
-.secondary{background:#b28d3e}
-.section-title{
-  color:var(--green);border-right:5px solid var(--gold);
-  padding-right:12px;margin-top:30px;
-}
+button:disabled{opacity:.6;cursor:wait}
+.secondary{background:#a68135}
 .hidden{display:none!important}
 #ministryDetails{
-  background:white;padding:22px;
-  border-radius:12px;margin-top:20px;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin-top:22px;
   border:1px solid #ddd;
 }
 .facility{
-  background:#f7f4eb;padding:14px;
-  margin:10px 0;border-radius:8px;
+  background:#f7f4eb;
+  padding:15px;
+  margin:12px 0;
+  border-radius:8px;
 }
-.facility h4{margin:0 0 7px;color:var(--green)}
+.facility h4{margin:0 0 8px;color:var(--green)}
+.facility p{line-height:1.8}
 form{
-  display:grid;gap:12px;
-  background:white;padding:20px;border-radius:12px;
+  display:grid;
+  gap:12px;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  border:1px solid #e5dfcf;
 }
 label{font-weight:bold;font-size:14px}
 input,select,textarea{
-  width:100%;padding:12px;
-  border:1px solid #ccc;border-radius:7px;
-  font:inherit;background:white;
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:7px;
+  font:inherit;
+  background:white;
 }
-textarea{min-height:110px;resize:vertical}
+textarea{min-height:120px;resize:vertical}
 .notice{
-  background:#fff6db;border-right:4px solid var(--gold);
-  padding:13px;line-height:1.8;margin:15px 0;
+  background:#fff6db;
+  border-right:4px solid var(--gold);
+  padding:14px;
+  line-height:1.9;
+  margin:15px 0;
+  border-radius:5px;
 }
-#result{white-space:pre-wrap;line-height:1.9}
+.message{
+  white-space:pre-wrap;
+  line-height:1.9;
+  overflow-wrap:anywhere;
+}
+.success{color:#176b37}
+.error{color:var(--red)}
+.status-card{
+  background:#fff;
+  border:1px solid #e5dfcf;
+  padding:18px;
+  border-radius:10px;
+  margin-top:14px;
+}
 footer{
-  text-align:center;background:#09291f;color:white;
-  padding:25px 12px;margin-top:35px;line-height:1.9;
+  text-align:center;
+  background:#09291f;
+  color:white;
+  padding:25px 12px;
+  margin-top:35px;
+  line-height:2;
 }
 footer span{color:#f2d58d}
 @media(max-width:500px){
-  header h1{font-size:22px}
-  .hero h2{font-size:21px}
+  header h1{font-size:23px}
+  .hero h2{font-size:22px}
+  nav a{padding:8px;font-size:13px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -139,8 +202,8 @@ footer span{color:#f2d58d}
 <section class="hero" id="home">
   <h2>مرحبًا بكم في البوابة الحكومية</h2>
   <p>
-    بوابتكم للوصول إلى الوزارات والمرافق الحكومية والخدمات
-    وتقديم المطالب الإلكترونية بكل سهولة.
+    بوابة موحّدة للتعرّف على الوزارات والمرافق الحكومية
+    والخدمات وتقديم المطالب الإلكترونية.
   </p>
 </section>
 
@@ -148,19 +211,27 @@ footer span{color:#f2d58d}
 
 <section id="ministries">
   <h2 class="section-title">الوزارات والمرافق التابعة</h2>
-  <p>اختار الوزارة للاطلاع على مرافقها وخدماتها.</p>
-  <input id="search" class="search"
+  <p>ابحث عن الوزارة أو المرفق، ثم اضغط لعرض التفاصيل.</p>
+
+  <input
+    id="search"
+    class="search"
+    type="search"
     placeholder="🔎 ابحث عن وزارة أو مرفق..."
-    oninput="renderMinistries()">
+    aria-label="البحث عن وزارة أو مرفق"
+  >
+
   <div id="ministryGrid" class="grid"></div>
   <div id="ministryDetails" class="hidden"></div>
 </section>
 
 <section id="request">
   <h2 class="section-title">تقديم مطلب إلكتروني</h2>
+
   <div class="notice">
-    عمّر المعلومات المطلوبة واختر الوزارة والمرفق المعني.
-    احتفظ بالرقم المرجعي الذي يظهر بعد إرسال المطلب.
+    اختار الوزارة والمرفق المعني، وعمّر البيانات المطلوبة.
+    لا ترسل كلمات مرور أو معلومات سرية. لا تعتبر المطلب مُرسلًا
+    إلا بعد ظهور رسالة تأكيد نجاح الحفظ.
   </div>
 
   <form id="requestForm">
@@ -168,15 +239,14 @@ footer span{color:#f2d58d}
     <input id="name" required maxlength="120" autocomplete="name">
 
     <label for="email">البريد الإلكتروني</label>
-    <input id="email" type="email" required maxlength="200"
-      autocomplete="email">
+    <input id="email" type="email" required maxlength="200" autocomplete="email">
 
     <label for="city">المدينة</label>
     <input id="city" required maxlength="100">
 
     <label for="ministry">الوزارة</label>
-    <select id="ministry" required onchange="updateFacilities()">
-      <option value="">اختر الوزارة</option>
+    <select id="ministry" required>
+      <option value="">اختار الوزارة</option>
     </select>
 
     <label for="facility">المرفق أو الإدارة</label>
@@ -185,30 +255,45 @@ footer span{color:#f2d58d}
     </select>
 
     <label for="service">نوع الخدمة أو المطلب</label>
-    <input id="service" required maxlength="200"
-      placeholder="مثال: طلب وثيقة أو استفسار">
+    <input
+      id="service"
+      required
+      maxlength="200"
+      placeholder="مثال: الاستفسار عن شروط الإقامة"
+    >
 
     <label for="details">تفاصيل المطلب</label>
-    <textarea id="details" required maxlength="5000"
-      placeholder="اشرح موضوع المطلب بوضوح، ولا تكتب كلمات مرور أو معلومات سرية."></textarea>
+    <textarea
+      id="details"
+      required
+      maxlength="5000"
+      placeholder="اشرح موضوع المطلب بوضوح..."
+    ></textarea>
 
     <button id="submitButton" type="submit">إرسال المطلب</button>
-    <div id="result" role="status" aria-live="polite"></div>
+    <div id="result" class="message" role="status" aria-live="polite"></div>
   </form>
 </section>
 
 <section id="tracking">
   <h2 class="section-title">متابعة مطلب</h2>
-  <p>استعمل الرقم المرجعي الذي تحصلت عليه عند تقديم المطلب.</p>
+
+  <div class="notice">
+    يمكن تفعيل التتبّع بعد إعداد آلية آمنة للتحقّق من صاحب المطلب.
+    لا نعرض بيانات المطالب أو حالتها عبر بحث عام غير محمي.
+  </div>
+
   <form id="trackingForm">
     <label for="reference">الرقم المرجعي</label>
-    <input id="reference" required placeholder="مثال: PL-ABC12345">
-    <button type="submit">متابعة الحالة</button>
-    <div id="trackingResult" role="status" aria-live="polite"></div>
+    <input
+      id="reference"
+      required
+      maxlength="100"
+      placeholder="أدخل الرقم المرجعي"
+    >
+    <button type="submit">التحقّق من إمكانية المتابعة</button>
+    <div id="trackingResult" class="message" role="status" aria-live="polite"></div>
   </form>
-  <p class="notice">
-    متابعة الحالة ستصبح متاحة بعد ربط خدمة التتبع الآمنة بقاعدة البيانات.
-  </p>
 </section>
 
 </main>
@@ -220,172 +305,401 @@ footer span{color:#f2d58d}
 </footer>
 
 <script>
+"use strict";
+
+/*
+  إعدادات Supabase:
+  المفتاح هنا هو publishable key المخصص للاستخدام العام.
+  لا تضع service_role key داخل هذا الملف.
+*/
+const SUPABASE_URL = "https://gfjlglniyaerdcjgefgi.supabase.co";
+const SUPABASE_KEY = "sb_publishable_UTEgMhPFF34jjCIeX39Nhg_8Tf_cWiX";
+
 const ministries = [
- {name:"وزارة الداخلية",facilities:["الأمن العام","الحماية المدنية","إدارة شؤون الإقامة","الإدارة العامة للجماعات المحلية"]},
- {name:"وزارة الشؤون الخارجية",facilities:["الإدارة الدبلوماسية","الشؤون القنصلية","إدارة التعاون الدولي","إدارة التونسيين بالخارج"]},
- {name:"وزارة العدل",facilities:["المحاكم","النيابة العمومية","الإدارة العامة للسجون","المصالح العدلية"]},
- {name:"وزارة الدفاع والحماية الوطنية",facilities:["القوات المسلحة","إدارة التجنيد","الخدمات الطبية العسكرية","إدارة الحماية الوطنية"]},
- {name:"وزارة المالية",facilities:["إدارة الضرائب","المحاسبة العمومية","إدارة الاستخلاص","إدارة أملاك الدولة"]},
- {name:"وزارة الاقتصاد والاستثمار",facilities:["وكالة الاستثمار","إدارة المؤسسات","إدارة التجارة","إدارة التخطيط الاقتصادي"]},
- {name:"وزارة التربية",facilities:["المدارس الابتدائية","المعاهد الثانوية","إدارة الامتحانات","إدارة الحياة المدرسية"]},
- {name:"وزارة التعليم العالي والبحث العلمي",facilities:["الجامعات","مراكز البحث العلمي","الخدمات الجامعية","إدارة المنح الجامعية"]},
- {name:"وزارة الصحة",facilities:["المستشفيات العمومية","مراكز الصحة الأساسية","إدارة الصحة الوقائية","إدارة الصيدلة والدواء"]},
- {name:"وزارة الشؤون الاجتماعية",facilities:["إدارة الضمان الاجتماعي","إدارة المساعدات الاجتماعية","مراكز الرعاية","إدارة شؤون الأسرة"]},
- {name:"وزارة التشغيل وتنمية المهارات",facilities:["مراكز التشغيل","مراكز التكوين المهني","إدارة التدريب","إدارة دعم المبادرات"]},
- {name:"وزارة الفلاحة والموارد المائية",facilities:["إدارة الإنتاج الفلاحي","إدارة الموارد المائية","إدارة الغابات","المصالح البيطرية"]},
- {name:"وزارة البيئة والطاقة",facilities:["إدارة البيئة","إدارة الطاقات المتجددة","إدارة حماية المحيط","إدارة الموارد الطبيعية"]},
- {name:"وزارة النقل والبنية التحتية",facilities:["النقل البري","النقل البحري","النقل الجوي","إدارة الطرقات والبنية التحتية"]},
- {name:"وزارة الثقافة والسياحة والرياضة",facilities:["إدارة الثقافة","إدارة التراث","إدارة السياحة","إدارة الرياضة والشباب"]}
+  {
+    name:"وزارة الداخلية",
+    facilities:[
+      "الأمن العام",
+      "الحماية المدنية",
+      "إدارة شؤون الإقامة",
+      "الإدارة العامة للجماعات المحلية"
+    ]
+  },
+  {
+    name:"وزارة الشؤون الخارجية",
+    facilities:[
+      "الإدارة الدبلوماسية",
+      "الشؤون القنصلية",
+      "إدارة التعاون الدولي",
+      "إدارة شؤون المواطنين بالخارج"
+    ]
+  },
+  {
+    name:"وزارة العدل",
+    facilities:[
+      "المحاكم",
+      "النيابة العمومية",
+      "إدارة المصالح العدلية",
+      "إدارة المؤسسات الإصلاحية"
+    ]
+  },
+  {
+    name:"وزارة الدفاع والحماية الوطنية",
+    facilities:[
+      "القوات المسلحة",
+      "إدارة التجنيد",
+      "الخدمات الطبية العسكرية",
+      "إدارة الحماية الوطنية"
+    ]
+  },
+  {
+    name:"وزارة المالية",
+    facilities:[
+      "إدارة الضرائب",
+      "المحاسبة العمومية",
+      "إدارة الاستخلاص",
+      "إدارة أملاك الدولة"
+    ]
+  },
+  {
+    name:"وزارة الاقتصاد والاستثمار",
+    facilities:[
+      "وكالة الاستثمار",
+      "إدارة المؤسسات",
+      "إدارة التجارة",
+      "إدارة التخطيط الاقتصادي"
+    ]
+  },
+  {
+    name:"وزارة التربية",
+    facilities:[
+      "المدارس الابتدائية",
+      "المعاهد الثانوية",
+      "إدارة الامتحانات",
+      "إدارة الحياة المدرسية"
+    ]
+  },
+  {
+    name:"وزارة التعليم العالي والبحث العلمي",
+    facilities:[
+      "الجامعات",
+      "مراكز البحث العلمي",
+      "الخدمات الجامعية",
+      "إدارة المنح الجامعية"
+    ]
+  },
+  {
+    name:"وزارة الصحة",
+    facilities:[
+      "المستشفيات العمومية",
+      "مراكز الصحة الأساسية",
+      "إدارة الصحة الوقائية",
+      "إدارة الصيدلة والدواء"
+    ]
+  },
+  {
+    name:"وزارة الشؤون الاجتماعية",
+    facilities:[
+      "إدارة الضمان الاجتماعي",
+      "إدارة المساعدات الاجتماعية",
+      "مراكز الرعاية",
+      "إدارة شؤون الأسرة"
+    ]
+  },
+  {
+    name:"وزارة التشغيل وتنمية المهارات",
+    facilities:[
+      "مراكز التشغيل",
+      "مراكز التكوين المهني",
+      "إدارة التدريب",
+      "إدارة دعم المبادرات"
+    ]
+  },
+  {
+    name:"وزارة الفلاحة والموارد المائية",
+    facilities:[
+      "إدارة الإنتاج الفلاحي",
+      "إدارة الموارد المائية",
+      "إدارة الغابات",
+      "المصالح البيطرية"
+    ]
+  },
+  {
+    name:"وزارة البيئة والطاقة",
+    facilities:[
+      "إدارة البيئة",
+      "إدارة الطاقات المتجددة",
+      "إدارة حماية المحيط",
+      "إدارة الموارد الطبيعية"
+    ]
+  },
+  {
+    name:"وزارة النقل والبنية التحتية",
+    facilities:[
+      "النقل البري",
+      "النقل البحري",
+      "النقل الجوي",
+      "إدارة الطرقات والبنية التحتية"
+    ]
+  },
+  {
+    name:"وزارة الثقافة والسياحة والرياضة",
+    facilities:[
+      "إدارة الثقافة",
+      "إدارة التراث",
+      "إدارة السياحة",
+      "إدارة الرياضة والشباب"
+    ]
+  }
 ];
 
 const grid = document.getElementById("ministryGrid");
 const ministrySelect = document.getElementById("ministry");
 const facilitySelect = document.getElementById("facility");
 const detailsBox = document.getElementById("ministryDetails");
+const requestForm = document.getElementById("requestForm");
+const result = document.getElementById("result");
+const submitButton = document.getElementById("submitButton");
 
-function renderMinistries(){
+function addTextElement(parent, tag, text, className) {
+  const el = document.createElement(tag);
+  el.textContent = text;
+  if (className) el.className = className;
+  parent.appendChild(el);
+  return el;
+}
+
+function renderMinistries() {
   const q = document.getElementById("search").value.trim().toLowerCase();
-  grid.innerHTML = "";
+  grid.replaceChildren();
 
-  ministries.forEach((m,i)=>{
-    const matches = (m.name+" "+m.facilities.join(" ")).toLowerCase().includes(q);
-    if(!matches) return;
+  ministries.forEach((m, index) => {
+    const searchable = (m.name + " " + m.facilities.join(" ")).toLowerCase();
+    if (!searchable.includes(q)) return;
 
     const card = document.createElement("article");
     card.className = "card";
 
-    const title = document.createElement("h3");
-    title.textContent = "🏛️ "+m.name;
+    addTextElement(card, "h3", "🏛️ " + m.name);
+    addTextElement(card, "p", "عدد المرافق: " + m.facilities.length);
 
-    const description = document.createElement("p");
-    description.textContent = "عدد المرافق: "+m.facilities.length;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = "عرض المرافق";
+    btn.addEventListener("click", () => showMinistry(index));
 
-    const button = document.createElement("button");
-    button.textContent = "عرض المرافق والخدمات";
-    button.onclick = ()=>showMinistry(i);
-
-    card.append(title,description,button);
+    card.appendChild(btn);
     grid.appendChild(card);
   });
 
-  if(!grid.children.length){
-    grid.textContent = "لم يتم العثور على نتائج.";
+  if (grid.children.length === 0) {
+    addTextElement(grid, "p", "لم يتم العثور على نتائج.");
   }
 }
 
-function showMinistry(index){
-  const m = ministries[index];
-  detailsBox.innerHTML = "";
+function showMinistry(index) {
+  const ministry = ministries[index];
+  detailsBox.replaceChildren();
   detailsBox.classList.remove("hidden");
 
-  const title = document.createElement("h2");
-  title.textContent = m.name;
+  addTextElement(detailsBox, "h2", ministry.name);
+  addTextElement(detailsBox, "p", "المرافق والإدارات التابعة:");
 
-  const intro = document.createElement("p");
-  intro.textContent = "المرافق والإدارات التابعة للوزارة:";
-
-  detailsBox.append(title,intro);
-
-  m.facilities.forEach(f=>{
+  ministry.facilities.forEach(facility => {
     const box = document.createElement("div");
     box.className = "facility";
 
-    const h = document.createElement("h4");
-    h.textContent = "🏢 "+f;
+    addTextElement(box, "h4", "🏢 " + facility);
+    addTextElement(
+      box,
+      "p",
+      "يمكنك اختيار هذا المرفق في استمارة المطالب لإرسال طلب متعلق بخدماته."
+    );
 
-    const p = document.createElement("p");
-    p.textContent = "للاستفسار أو تقديم مطلب، اختار هذا المرفق في استمارة المطالب.";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = "تقديم مطلب لهذا المرفق";
 
-    const b = document.createElement("button");
-    b.textContent = "تقديم مطلب لهذا المرفق";
-    b.onclick = ()=>{
-      ministrySelect.value = m.name;
+    btn.addEventListener("click", () => {
+      ministrySelect.value = ministry.name;
       updateFacilities();
-      facilitySelect.value = f;
-      document.getElementById("request").scrollIntoView({behavior:"smooth"});
-    };
+      facilitySelect.value = facility;
 
-    box.append(h,p,b);
+      document.getElementById("request").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    });
+
+    box.appendChild(btn);
     detailsBox.appendChild(box);
   });
 
   const close = document.createElement("button");
+  close.type = "button";
   close.className = "secondary";
   close.textContent = "إغلاق التفاصيل";
-  close.onclick = ()=>detailsBox.classList.add("hidden");
+  close.addEventListener("click", () => {
+    detailsBox.classList.add("hidden");
+  });
+
   detailsBox.appendChild(close);
   detailsBox.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-function updateFacilities(){
-  const m = ministries.find(x=>x.name===ministrySelect.value);
-  facilitySelect.innerHTML = "";
+function updateFacilities() {
+  const selected = ministries.find(m => m.name === ministrySelect.value);
+  facilitySelect.replaceChildren();
 
   const first = document.createElement("option");
   first.value = "";
-  first.textContent = m ? "اختر المرفق" : "اختار الوزارة أولًا";
+  first.textContent = selected ? "اختار المرفق" : "اختار الوزارة أولًا";
   facilitySelect.appendChild(first);
 
-  if(m){
-    m.facilities.forEach(f=>{
+  if (selected) {
+    selected.facilities.forEach(facility => {
       const option = document.createElement("option");
-      option.value = f;
-      option.textContent = f;
+      option.value = facility;
+      option.textContent = facility;
       facilitySelect.appendChild(option);
     });
   }
 }
 
-ministries.forEach(m=>{
+ministries.forEach(ministry => {
   const option = document.createElement("option");
-  option.value = m.name;
-  option.textContent = m.name;
+  option.value = ministry.name;
+  option.textContent = ministry.name;
   ministrySelect.appendChild(option);
 });
 
+document.getElementById("search").addEventListener("input", renderMinistries);
+ministrySelect.addEventListener("change", updateFacilities);
+
 renderMinistries();
 
-function makeReference(){
-  return "PL-"+Date.now().toString(36).toUpperCase()
-    +Math.random().toString(36).slice(2,7).toUpperCase();
+/*
+  إنشاء رقم مرجعي.
+  يجب أن يكون عمود reference_number في قاعدة البيانات فريدًا.
+*/
+function makeReference() {
+  const randomPart = crypto.randomUUID()
+    .replaceAll("-", "")
+    .slice(0, 12)
+    .toUpperCase();
+
+  return "PL-" + randomPart;
 }
 
-document.getElementById("requestForm").addEventListener("submit",async e=>{
-  e.preventDefault();
+requestForm.addEventListener("submit", async event => {
+  event.preventDefault();
 
-  const button = document.getElementById("submitButton");
-  const result = document.getElementById("result");
+  result.className = "message";
+  result.textContent = "";
+  submitButton.disabled = true;
 
-  button.disabled = true;
-  result.textContent = "جارٍ تجهيز المطلب...";
+  try {
+    const applicantName = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const ministry = ministrySelect.value;
+    const facility = facilitySelect.value;
+    const service = document.getElementById("service").value.trim();
+    const details = document.getElementById("details").value.trim();
 
-  const reference = makeReference();
-  const ministry = ministrySelect.value;
-  const facility = facilitySelect.value;
-  const service = document.getElementById("service").value.trim();
-  const details = document.getElementById("details").value.trim();
+    if (!applicantName || !email || !city ||
+        !ministry || !facility || !service || !details) {
+      throw new Error("يرجى تعمير جميع الحقول المطلوبة.");
+    }
 
-  /*
-    إعدادات الربط بقاعدة البيانات ستُفعّل بعد تأكيد
-    أعمدة Supabase وسياسات السماح بإرسال المطالب.
-    لا نعرض نجاحًا وهميًا قبل حفظ المطلب فعلًا.
-  */
+    if (!ministries.some(m =>
+      m.name === ministry && m.facilities.includes(facility)
+    )) {
+      throw new Error("الوزارة أو المرفق المختار غير صحيح.");
+    }
 
-  result.textContent =
-    "لم يتم إرسال المطلب بعد.\n"+
-    "الوزارة: "+ministry+"\n"+
-    "المرفق: "+facility+"\n"+
-    "الخدمة: "+service+"\n\n"+
-    "الخطوة التالية: ربط الاستمارة بقاعدة البيانات حتى يُحفظ المطلب وتستطيع الإدارة متابعته.";
+    result.textContent = "جارٍ إرسال المطلب وحفظه...";
 
-  button.disabled = false;
+    const reference = makeReference();
+
+    const payload = {
+      reference_number: reference,
+      applicant_name: applicantName,
+      email: email,
+      city: city,
+      application_type: service,
+      details:
+        "الوزارة: " + ministry +
+        "\nالمرفق: " + facility +
+        "\nالخدمة: " + service +
+        "\nتفاصيل المطلب: " + details,
+      status: "pending"
+    };
+
+    const response = await fetch(
+      SUPABASE_URL + "/rest/v1/citizen_applications",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "apikey":SUPABASE_KEY,
+          "Prefer":"return=minimal"
+        },
+        body:JSON.stringify(payload)
+      }
+    );
+
+    if (!response.ok) {
+      const serverMessage = await response.text();
+      console.error("Supabase response:", serverMessage);
+
+      if (response.status === 401 || response.status === 403) {
+        throw new Error(
+          "قاعدة البيانات رفضت الإرسال بسبب الصلاحيات. يلزم مراجعة سياسات Supabase."
+        );
+      }
+
+      if (response.status === 404) {
+        throw new Error(
+          "جدول المطالب غير موجود أو اسم الجدول غير صحيح."
+        );
+      }
+
+      throw new Error(
+        "لم يتم حفظ المطلب. راجع إعدادات Supabase ثم حاول مرة أخرى."
+      );
+    }
+
+    result.className = "message success";
+    result.textContent =
+      "✅ تم حفظ المطلب وإرساله بنجاح.\n\n" +
+      "الرقم المرجعي: " + reference + "\n" +
+      "الوزارة: " + ministry + "\n" +
+      "المرفق: " + facility + "\n" +
+      "الخدمة: " + service + "\n\n" +
+      "احتفظ بالرقم المرجعي للمتابعة لاحقًا.";
+
+    requestForm.reset();
+    updateFacilities();
+
+  } catch (error) {
+    console.error(error);
+    result.className = "message error";
+    result.textContent = "❌ " + error.message;
+  } finally {
+    submitButton.disabled = false;
+  }
 });
 
-document.getElementById("trackingForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  document.getElementById("trackingResult").textContent =
-    "يلزم تفعيل الاتصال الآمن بقاعدة البيانات قبل عرض حالة المطلب.";
+document.getElementById("trackingForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const trackingResult = document.getElementById("trackingResult");
+  trackingResult.className = "message";
+  trackingResult.textContent =
+    "لم يتم تفعيل التتبّع بعد. يلزم إعداد خدمة تحقق آمنة من هوية صاحب المطلب قبل عرض حالته.";
 });
 </script>
+
 </body>
 </html>
