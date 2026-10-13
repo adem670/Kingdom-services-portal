@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بوابة الوزارات والخدمات | مملكة PeaceLand</title>
+<style>
+:root {
+  --green:#103c2e;
+  --green2:#185440;
+  --gold:#d5b46a;
+  --cream:#f7f4eb;
+  --white:#fff;
+  --text:#20342b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+}
+header{
+  background:linear-gradient(135deg,#0b2b22,#185440);
+  color:white;
+  padding:30px 18px;
+  text-align:center;
+  border-bottom:4px solid var(--gold);
+}
+.emblem{
+  width:75px;height:75px;
+  border:2px solid var(--gold);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:auto auto 12px;
+  font-size:36px;
+}
+header h1{margin:8px 0;color:#f2d58d;font-size:27px}
+header p{margin:8px 0}
+nav{
+  background:#09291f;
+  display:flex;justify-content:center;
+  gap:10px;flex-wrap:wrap;padding:13px;
+}
+nav a{
+  color:white;text-decoration:none;
+  padding:9px 14px;border-radius:6px;
+}
+nav a:hover{background:var(--green2)}
+.hero{
+  text-align:center;padding:35px 15px 20px;
+}
+.hero h2{color:var(--green);font-size:25px}
+.hero p{line-height:1.9}
+.container{max-width:1150px;margin:auto;padding:18px}
+.search{
+  display:block;width:100%;padding:14px;
+  border:1px solid #ccc;border-radius:9px;
+  font-size:16px;margin:12px 0 22px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:17px;
+}
+.card{
+  background:white;border:1px solid #e5dfcf;
+  border-radius:12px;padding:20px;
+  box-shadow:0 4px 12px #0000000b;
+}
+.card h3{color:var(--green);margin-top:0}
+.card p{line-height:1.8;font-size:14px}
+button,.button{
+  border:0;border-radius:7px;
+  padding:11px 15px;background:var(--green);
+  color:white;cursor:pointer;font-size:14px;
+  text-decoration:none;display:inline-block;
+}
+button:hover,.button:hover{background:var(--green2)}
+.secondary{background:#b28d3e}
+.section-title{
+  color:var(--green);border-right:5px solid var(--gold);
+  padding-right:12px;margin-top:30px;
+}
+.hidden{display:none!important}
+#ministryDetails{
+  background:white;padding:22px;
+  border-radius:12px;margin-top:20px;
+  border:1px solid #ddd;
+}
+.facility{
+  background:#f7f4eb;padding:14px;
+  margin:10px 0;border-radius:8px;
+}
+.facility h4{margin:0 0 7px;color:var(--green)}
+form{
+  display:grid;gap:12px;
+  background:white;padding:20px;border-radius:12px;
+}
+label{font-weight:bold;font-size:14px}
+input,select,textarea{
+  width:100%;padding:12px;
+  border:1px solid #ccc;border-radius:7px;
+  font:inherit;background:white;
+}
+textarea{min-height:110px;resize:vertical}
+.notice{
+  background:#fff6db;border-right:4px solid var(--gold);
+  padding:13px;line-height:1.8;margin:15px 0;
+}
+#result{white-space:pre-wrap;line-height:1.9}
+footer{
+  text-align:center;background:#09291f;color:white;
+  padding:25px 12px;margin-top:35px;line-height:1.9;
+}
+footer span{color:#f2d58d}
+@media(max-width:500px){
+  header h1{font-size:22px}
+  .hero h2{font-size:21px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="emblem">⚖️</div>
+  <h1>مملكة PeaceLand</h1>
+  <p>بوابة الوزارات والخدمات الحكومية</p>
+  <p>Government Ministries & Public Services Portal</p>
+</header>
+
+<nav>
+  <a href="#home">الرئيسية</a>
+  <a href="#ministries">الوزارات</a>
+  <a href="#request">تقديم مطلب</a>
+  <a href="#tracking">متابعة مطلب</a>
+</nav>
+
+<section class="hero" id="home">
+  <h2>مرحبًا بكم في البوابة الحكومية</h2>
+  <p>
+    بوابتكم للوصول إلى الوزارات والمرافق الحكومية والخدمات
+    وتقديم المطالب الإلكترونية بكل سهولة.
+  </p>
+</section>
+
+<main class="container">
+
+<section id="ministries">
+  <h2 class="section-title">الوزارات والمرافق التابعة</h2>
+  <p>اختار الوزارة للاطلاع على مرافقها وخدماتها.</p>
+  <input id="search" class="search"
+    placeholder="🔎 ابحث عن وزارة أو مرفق..."
+    oninput="renderMinistries()">
+  <div id="ministryGrid" class="grid"></div>
+  <div id="ministryDetails" class="hidden"></div>
+</section>
+
+<section id="request">
+  <h2 class="section-title">تقديم مطلب إلكتروني</h2>
+  <div class="notice">
+    عمّر المعلومات المطلوبة واختر الوزارة والمرفق المعني.
+    احتفظ بالرقم المرجعي الذي يظهر بعد إرسال المطلب.
+  </div>
+
+  <form id="requestForm">
+    <label for="name">الاسم الكامل</label>
+    <input id="name" required maxlength="120" autocomplete="name">
+
+    <label for="email">البريد الإلكتروني</label>
+    <input id="email" type="email" required maxlength="200"
+      autocomplete="email">
+
+    <label for="city">المدينة</label>
+    <input id="city" required maxlength="100">
+
+    <label for="ministry">الوزارة</label>
+    <select id="ministry" required onchange="updateFacilities()">
+      <option value="">اختر الوزارة</option>
+    </select>
+
+    <label for="facility">المرفق أو الإدارة</label>
+    <select id="facility" required>
+      <option value="">اختار الوزارة أولًا</option>
+    </select>
+
+    <label for="service">نوع الخدمة أو المطلب</label>
+    <input id="service" required maxlength="200"
+      placeholder="مثال: طلب وثيقة أو استفسار">
+
+    <label for="details">تفاصيل المطلب</label>
+    <textarea id="details" required maxlength="5000"
+      placeholder="اشرح موضوع المطلب بوضوح، ولا تكتب كلمات مرور أو معلومات سرية."></textarea>
+
+    <button id="submitButton" type="submit">إرسال المطلب</button>
+    <div id="result" role="status" aria-live="polite"></div>
+  </form>
+</section>
+
+<section id="tracking">
+  <h2 class="section-title">متابعة مطلب</h2>
+  <p>استعمل الرقم المرجعي الذي تحصلت عليه عند تقديم المطلب.</p>
+  <form id="trackingForm">
+    <label for="reference">الرقم المرجعي</label>
+    <input id="reference" required placeholder="مثال: PL-ABC12345">
+    <button type="submit">متابعة الحالة</button>
+    <div id="trackingResult" role="status" aria-live="polite"></div>
+  </form>
+  <p class="notice">
+    متابعة الحالة ستصبح متاحة بعد ربط خدمة التتبع الآمنة بقاعدة البيانات.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <strong><span>مملكة PeaceLand</span></strong><br>
+  بوابة الوزارات والخدمات الحكومية<br>
+  خدمة المواطن | الشفافية | الكفاءة
+</footer>
+
+<script>
+const ministries = [
+ {name:"وزارة الداخلية",facilities:["الأمن العام","الحماية المدنية","إدارة شؤون الإقامة","الإدارة العامة للجماعات المحلية"]},
+ {name:"وزارة الشؤون الخارجية",facilities:["الإدارة الدبلوماسية","الشؤون القنصلية","إدارة التعاون الدولي","إدارة التونسيين بالخارج"]},
+ {name:"وزارة العدل",facilities:["المحاكم","النيابة العمومية","الإدارة العامة للسجون","المصالح العدلية"]},
+ {name:"وزارة الدفاع والحماية الوطنية",facilities:["القوات المسلحة","إدارة التجنيد","الخدمات الطبية العسكرية","إدارة الحماية الوطنية"]},
+ {name:"وزارة المالية",facilities:["إدارة الضرائب","المحاسبة العمومية","إدارة الاستخلاص","إدارة أملاك الدولة"]},
+ {name:"وزارة الاقتصاد والاستثمار",facilities:["وكالة الاستثمار","إدارة المؤسسات","إدارة التجارة","إدارة التخطيط الاقتصادي"]},
+ {name:"وزارة التربية",facilities:["المدارس الابتدائية","المعاهد الثانوية","إدارة الامتحانات","إدارة الحياة المدرسية"]},
+ {name:"وزارة التعليم العالي والبحث العلمي",facilities:["الجامعات","مراكز البحث العلمي","الخدمات الجامعية","إدارة المنح الجامعية"]},
+ {name:"وزارة الصحة",facilities:["المستشفيات العمومية","مراكز الصحة الأساسية","إدارة الصحة الوقائية","إدارة الصيدلة والدواء"]},
+ {name:"وزارة الشؤون الاجتماعية",facilities:["إدارة الضمان الاجتماعي","إدارة المساعدات الاجتماعية","مراكز الرعاية","إدارة شؤون الأسرة"]},
+ {name:"وزارة التشغيل وتنمية المهارات",facilities:["مراكز التشغيل","مراكز التكوين المهني","إدارة التدريب","إدارة دعم المبادرات"]},
+ {name:"وزارة الفلاحة والموارد المائية",facilities:["إدارة الإنتاج الفلاحي","إدارة الموارد المائية","إدارة الغابات","المصالح البيطرية"]},
+ {name:"وزارة البيئة والطاقة",facilities:["إدارة البيئة","إدارة الطاقات المتجددة","إدارة حماية المحيط","إدارة الموارد الطبيعية"]},
+ {name:"وزارة النقل والبنية التحتية",facilities:["النقل البري","النقل البحري","النقل الجوي","إدارة الطرقات والبنية التحتية"]},
+ {name:"وزارة الثقافة والسياحة والرياضة",facilities:["إدارة الثقافة","إدارة التراث","إدارة السياحة","إدارة الرياضة والشباب"]}
+];
+
+const grid = document.getElementById("ministryGrid");
+const ministrySelect = document.getElementById("ministry");
+const facilitySelect = document.getElementById("facility");
+const detailsBox = document.getElementById("ministryDetails");
+
+function renderMinistries(){
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  grid.innerHTML = "";
+
+  ministries.forEach((m,i)=>{
+    const matches = (m.name+" "+m.facilities.join(" ")).toLowerCase().includes(q);
+    if(!matches) return;
+
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const title = document.createElement("h3");
+    title.textContent = "🏛️ "+m.name;
+
+    const description = document.createElement("p");
+    description.textContent = "عدد المرافق: "+m.facilities.length;
+
+    const button = document.createElement("button");
+    button.textContent = "عرض المرافق والخدمات";
+    button.onclick = ()=>showMinistry(i);
+
+    card.append(title,description,button);
+    grid.appendChild(card);
+  });
+
+  if(!grid.children.length){
+    grid.textContent = "لم يتم العثور على نتائج.";
+  }
+}
+
+function showMinistry(index){
+  const m = ministries[index];
+  detailsBox.innerHTML = "";
+  detailsBox.classList.remove("hidden");
+
+  const title = document.createElement("h2");
+  title.textContent = m.name;
+
+  const intro = document.createElement("p");
+  intro.textContent = "المرافق والإدارات التابعة للوزارة:";
+
+  detailsBox.append(title,intro);
+
+  m.facilities.forEach(f=>{
+    const box = document.createElement("div");
+    box.className = "facility";
+
+    const h = document.createElement("h4");
+    h.textContent = "🏢 "+f;
+
+    const p = document.createElement("p");
+    p.textContent = "للاستفسار أو تقديم مطلب، اختار هذا المرفق في استمارة المطالب.";
+
+    const b = document.createElement("button");
+    b.textContent = "تقديم مطلب لهذا المرفق";
+    b.onclick = ()=>{
+      ministrySelect.value = m.name;
+      updateFacilities();
+      facilitySelect.value = f;
+      document.getElementById("request").scrollIntoView({behavior:"smooth"});
+    };
+
+    box.append(h,p,b);
+    detailsBox.appendChild(box);
+  });
+
+  const close = document.createElement("button");
+  close.className = "secondary";
+  close.textContent = "إغلاق التفاصيل";
+  close.onclick = ()=>detailsBox.classList.add("hidden");
+  detailsBox.appendChild(close);
+  detailsBox.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function updateFacilities(){
+  const m = ministries.find(x=>x.name===ministrySelect.value);
+  facilitySelect.innerHTML = "";
+
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = m ? "اختر المرفق" : "اختار الوزارة أولًا";
+  facilitySelect.appendChild(first);
+
+  if(m){
+    m.facilities.forEach(f=>{
+      const option = document.createElement("option");
+      option.value = f;
+      option.textContent = f;
+      facilitySelect.appendChild(option);
+    });
+  }
+}
+
+ministries.forEach(m=>{
+  const option = document.createElement("option");
+  option.value = m.name;
+  option.textContent = m.name;
+  ministrySelect.appendChild(option);
+});
+
+renderMinistries();
+
+function makeReference(){
+  return "PL-"+Date.now().toString(36).toUpperCase()
+    +Math.random().toString(36).slice(2,7).toUpperCase();
+}
+
+document.getElementById("requestForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+
+  const button = document.getElementById("submitButton");
+  const result = document.getElementById("result");
+
+  button.disabled = true;
+  result.textContent = "جارٍ تجهيز المطلب...";
+
+  const reference = makeReference();
+  const ministry = ministrySelect.value;
+  const facility = facilitySelect.value;
+  const service = document.getElementById("service").value.trim();
+  const details = document.getElementById("details").value.trim();
+
+  /*
+    إعدادات الربط بقاعدة البيانات ستُفعّل بعد تأكيد
+    أعمدة Supabase وسياسات السماح بإرسال المطالب.
+    لا نعرض نجاحًا وهميًا قبل حفظ المطلب فعلًا.
+  */
+
+  result.textContent =
+    "لم يتم إرسال المطلب بعد.\n"+
+    "الوزارة: "+ministry+"\n"+
+    "المرفق: "+facility+"\n"+
+    "الخدمة: "+service+"\n\n"+
+    "الخطوة التالية: ربط الاستمارة بقاعدة البيانات حتى يُحفظ المطلب وتستطيع الإدارة متابعته.";
+
+  button.disabled = false;
+});
+
+document.getElementById("trackingForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  document.getElementById("trackingResult").textContent =
+    "يلزم تفعيل الاتصال الآمن بقاعدة البيانات قبل عرض حالة المطلب.";
+});
+</script>
+</body>
+</html>
