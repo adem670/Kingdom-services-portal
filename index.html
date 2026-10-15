@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#103c2e">
 <title>بوابة الوزارات والخدمات الحكومية | PeaceLand</title>
+
 <style>
 :root {
   --green:#103c2e;
@@ -34,18 +35,26 @@ header {
   border:2px solid var(--gold);
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  margin:auto auto 12px;font-size:35px;
+  margin:auto auto 12px;
+  font-size:35px;
 }
 header h1 { color:#f2d58d; }
 nav {
   background:#09291f;
-  display:flex;justify-content:center;
-  gap:8px;flex-wrap:wrap;padding:12px;
-  position:sticky;top:0;z-index:10;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  padding:12px;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 nav a {
-  color:white;text-decoration:none;
-  padding:10px 13px;border-radius:6px;
+  color:white;
+  text-decoration:none;
+  padding:10px 13px;
+  border-radius:6px;
 }
 nav a:hover { background:var(--green2); }
 .hero { text-align:center;padding:32px 16px; }
@@ -55,7 +64,8 @@ nav a:hover { background:var(--green2); }
 .section-title {
   color:var(--green);
   border-right:5px solid var(--gold);
-  padding-right:12px;margin:30px 0 18px;
+  padding-right:12px;
+  margin:30px 0 18px;
 }
 .search {
   width:100%;padding:14px;
@@ -68,60 +78,128 @@ nav a:hover { background:var(--green2); }
   gap:16px;
 }
 .card {
-  background:white;border:1px solid #e5dfcf;
-  border-radius:12px;padding:20px;
+  background:white;
+  border:1px solid #e5dfcf;
+  border-radius:12px;
+  padding:20px;
   box-shadow:0 4px 12px #0000000a;
 }
 .card h3 { color:var(--green);line-height:1.7; }
 .card p { line-height:1.8;font-size:14px; }
 button {
-  border:0;border-radius:7px;padding:12px 15px;
-  background:var(--green);color:white;
-  cursor:pointer;font-size:14px;font-family:inherit;
+  border:0;border-radius:7px;
+  padding:12px 15px;
+  background:var(--green);
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+  font-family:inherit;
+  margin:4px 2px;
 }
 button:hover { background:var(--green2); }
 button:disabled { opacity:.6;cursor:wait; }
 .secondary { background:#a68135; }
 .hidden { display:none!important; }
 #ministryDetails {
-  background:white;padding:20px;border-radius:12px;
-  margin-top:22px;border:1px solid #ddd;
+  background:white;padding:20px;
+  border-radius:12px;margin-top:22px;
+  border:1px solid #ddd;
 }
 .facility {
-  background:#f7f4eb;padding:15px;
-  margin:12px 0;border-radius:8px;
+  background:#f7f4eb;
+  padding:15px;margin:12px 0;
+  border-radius:8px;
 }
 .facility h4 { margin:0 0 8px;color:var(--green); }
 .facility p { line-height:1.8; }
 form {
-  display:grid;gap:12px;background:white;
-  padding:20px;border-radius:12px;
+  display:grid;
+  gap:12px;
+  background:white;
+  padding:20px;
+  border-radius:12px;
   border:1px solid #e5dfcf;
 }
 label { font-weight:bold;font-size:14px; }
 input,select,textarea {
-  width:100%;padding:12px;border:1px solid #ccc;
-  border-radius:7px;font:inherit;background:white;
+  width:100%;padding:12px;
+  border:1px solid #ccc;
+  border-radius:7px;
+  font:inherit;
+  background:white;
 }
 textarea { min-height:120px;resize:vertical; }
 .notice {
-  background:#fff6db;border-right:4px solid var(--gold);
-  padding:14px;line-height:1.9;margin:15px 0;border-radius:5px;
+  background:#fff6db;
+  border-right:4px solid var(--gold);
+  padding:14px;
+  line-height:1.9;
+  margin:15px 0;
+  border-radius:5px;
 }
-.message { white-space:pre-wrap;line-height:1.9;overflow-wrap:anywhere; }
+.message {
+  white-space:pre-wrap;
+  line-height:1.9;
+  overflow-wrap:anywhere;
+}
 .success { color:#176b37; }
 .error { color:var(--red); }
+.status-pill {
+  display:inline-block;
+  background:#e9f3ec;
+  color:#185440;
+  padding:5px 10px;
+  border-radius:20px;
+  font-weight:bold;
+}
 footer {
-  text-align:center;background:#09291f;color:white;
-  padding:25px 12px;margin-top:35px;line-height:2;
+  text-align:center;
+  background:#09291f;
+  color:white;
+  padding:25px 12px;
+  margin-top:35px;
+  line-height:2;
 }
 footer span { color:#f2d58d; }
+
+#printArea { display:none; }
+
 @media(max-width:500px) {
   header h1 { font-size:23px; }
   nav a { padding:8px;font-size:13px; }
 }
+
+@media print {
+  body { background:white; }
+  body * { visibility:hidden!important; }
+  #printArea, #printArea * { visibility:visible!important; }
+  #printArea {
+    display:block!important;
+    position:absolute;
+    right:0;
+    top:0;
+    width:100%;
+    padding:20px;
+    background:white;
+    color:#111;
+    font-family:Tahoma,Arial,sans-serif;
+  }
+  #printArea h1,#printArea h2 { color:#103c2e; }
+  #printArea p {
+    line-height:1.8;
+    border-bottom:1px solid #ddd;
+    padding:7px 0;
+    overflow-wrap:anywhere;
+  }
+  #printArea .print-footer {
+    margin-top:30px;
+    border-top:2px solid #d5b46a;
+    padding-top:12px;
+  }
+}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -140,7 +218,10 @@ footer span { color:#f2d58d; }
 
 <section class="hero" id="home">
   <h2>مرحبًا بكم في البوابة الحكومية</h2>
-  <p>بوابة موحّدة للتعرّف على الوزارات والمرافق الحكومية والخدمات وتقديم المطالب الإلكترونية.</p>
+  <p>
+    بوابة موحّدة للتعرّف على الوزارات والمرافق الحكومية
+    والخدمات وتقديم المطالب الإلكترونية ومتابعتها.
+  </p>
 </section>
 
 <main class="container">
@@ -148,24 +229,31 @@ footer span { color:#f2d58d; }
 <section id="ministries">
   <h2 class="section-title">الوزارات والمرافق التابعة</h2>
   <p>ابحث عن الوزارة أو المرفق، ثم اضغط لعرض التفاصيل.</p>
-  <input id="search" class="search" type="search" placeholder="🔎 ابحث عن وزارة أو مرفق...">
+
+  <input id="search" class="search" type="search"
+         placeholder="🔎 ابحث عن وزارة أو مرفق...">
+
   <div id="ministryGrid" class="grid"></div>
   <div id="ministryDetails" class="hidden"></div>
 </section>
 
 <section id="request">
   <h2 class="section-title">تقديم مطلب إلكتروني</h2>
+
   <div class="notice">
     اختار المدينة والوزارة والمرفق، وعمّر البيانات المطلوبة.
     يظهر الرقم المرجعي بعد نجاح حفظ المطلب.
+    احتفظ بالرقم المرجعي والبريد الإلكتروني لمتابعته لاحقًا.
   </div>
 
   <form id="requestForm">
+
     <label for="name">الاسم الكامل</label>
     <input id="name" required maxlength="120" autocomplete="name">
 
     <label for="email">البريد الإلكتروني</label>
-    <input id="email" type="email" required maxlength="200">
+    <input id="email" type="email" required maxlength="200"
+           autocomplete="email">
 
     <label for="city">المدينة</label>
     <select id="city" required>
@@ -196,15 +284,54 @@ footer span { color:#f2d58d; }
     <label for="details">تفاصيل المطلب</label>
     <textarea id="details" required maxlength="5000"></textarea>
 
-    <button id="submitButton" type="submit">إرسال المطلب</button>
-    <div id="result" class="message" role="status" aria-live="polite"></div>
+    <button id="submitButton" type="submit">
+      إرسال المطلب
+    </button>
+
+    <div id="result" class="message"
+         role="status" aria-live="polite"></div>
   </form>
 </section>
 
 <section id="tracking">
-  <h2 class="section-title">متابعة مطلب</h2>
+  <h2 class="section-title">متابعة مطلب إلكتروني</h2>
+
   <div class="notice">
-    خدمة التتبّع غير مفعّلة حاليًا؛ يلزم إعداد تحقق آمن قبل عرض حالة أي مطلب.
+    أدخل الرقم المرجعي والبريد الإلكتروني اللذين استعملتهما
+    عند تقديم المطلب. إذا كانت البيانات صحيحة، ستظهر حالة المطلب
+    والتفاصيل المتاحة وردّ الإدارة.
+  </div>
+
+  <form id="trackingForm">
+
+    <label for="trackReference">الرقم المرجعي</label>
+    <input id="trackReference" type="text"
+           placeholder="مثال: PL-6B6EE647F037"
+           maxlength="100" required autocomplete="off">
+
+    <label for="trackEmail">البريد الإلكتروني المستعمل عند تقديم المطلب</label>
+    <input id="trackEmail" type="email"
+           maxlength="200" required autocomplete="email">
+
+    <button id="trackButton" type="submit">
+      🔎 متابعة المطلب
+    </button>
+
+    <div id="trackingMessage" class="message"
+         role="status" aria-live="polite"></div>
+  </form>
+
+  <div id="trackingResult" class="card hidden" style="margin-top:20px">
+    <h3>نتيجة متابعة المطلب</h3>
+    <div id="trackingData" class="message"></div>
+
+    <button id="printReceipt" type="button">
+      🖨️ طباعة وصل إيداع المطلب
+    </button>
+
+    <button id="printTracking" type="button" class="secondary">
+      📄 طباعة نتيجة المتابعة
+    </button>
   </div>
 </section>
 
@@ -215,82 +342,133 @@ footer span { color:#f2d58d; }
   بوابة الوزارات والخدمات الحكومية<br>
   خدمة المواطن | الشفافية | الكفاءة
 </footer>
+
+<div id="printArea"></div>
+
 <script>
 "use strict";
 
+/* إعدادات Supabase */
 const SUPABASE_URL =
   "https://gfjlglniyaerdcjgefgi.supabase.co";
 
 const SUPABASE_KEY =
   "sb_publishable_UTEgMhPFF34jjCIeX39Nhg_8Tf_cWiX";
 
+/* الوزارات والمرافق */
 const ministries = [
-  {name:"وزارة الداخلية",facilities:[
-    "الأمن العام","الحماية المدنية","إدارة شؤون الإقامة",
-    "الإدارة العامة للجماعات المحلية"
-  ]},
-  {name:"وزارة الشؤون الخارجية",facilities:[
-    "الإدارة الدبلوماسية","الشؤون القنصلية",
-    "إدارة التعاون الدولي","إدارة شؤون المواطنين بالخارج"
-  ]},
-  {name:"وزارة العدل",facilities:[
-    "المحاكم","النيابة العمومية","إدارة المصالح العدلية",
-    "إدارة المؤسسات الإصلاحية"
-  ]},
-  {name:"وزارة الدفاع والحماية الوطنية",facilities:[
-    "القوات المسلحة","إدارة التجنيد",
-    "الخدمات الطبية العسكرية","إدارة الحماية الوطنية"
-  ]},
-  {name:"وزارة المالية",facilities:[
-    "إدارة الضرائب","المحاسبة العمومية",
-    "إدارة الاستخلاص","إدارة أملاك الدولة"
-  ]},
-  {name:"وزارة الاقتصاد والاستثمار",facilities:[
-    "وكالة الاستثمار","إدارة المؤسسات",
-    "إدارة التجارة","إدارة التخطيط الاقتصادي"
-  ]},
-  {name:"وزارة التربية",facilities:[
-    "المدارس الابتدائية","المعاهد الثانوية",
-    "إدارة الامتحانات","إدارة الحياة المدرسية"
-  ]},
-  {name:"وزارة التعليم العالي والبحث العلمي",facilities:[
-    "الجامعات","مراكز البحث العلمي",
-    "الخدمات الجامعية","إدارة المنح الجامعية"
-  ]},
-  {name:"وزارة الصحة",facilities:[
-    "المستشفيات العمومية","مراكز الصحة الأساسية",
-    "إدارة الصحة الوقائية","إدارة الصيدلة والدواء"
-  ]},
-  {name:"وزارة الشؤون الاجتماعية",facilities:[
-    "إدارة الضمان الاجتماعي","إدارة المساعدات الاجتماعية",
-    "مراكز الرعاية","إدارة شؤون الأسرة"
-  ]},
-  {name:"وزارة التشغيل وتنمية المهارات",facilities:[
-    "مراكز التشغيل","مراكز التكوين المهني",
-    "إدارة التدريب","إدارة دعم المبادرات"
-  ]},
-  {name:"وزارة الفلاحة والموارد المائية",facilities:[
-    "إدارة الإنتاج الفلاحي","إدارة الموارد المائية",
-    "إدارة الغابات","المصالح البيطرية"
-  ]},
-  {name:"وزارة البيئة والطاقة",facilities:[
-    "إدارة البيئة","إدارة الطاقات المتجددة",
-    "إدارة حماية المحيط","إدارة الموارد الطبيعية"
-  ]},
-  {name:"وزارة النقل والبنية التحتية",facilities:[
-    "النقل البري","النقل البحري","النقل الجوي",
-    "إدارة الطرقات والبنية التحتية"
-  ]},
-  {name:"وزارة الثقافة والسياحة والرياضة",facilities:[
-    "إدارة الثقافة","إدارة التراث","إدارة السياحة",
-    "إدارة الرياضة والشباب"
-  ]}
+  {
+    name:"وزارة الداخلية",
+    facilities:[
+      "الأمن العام","الحماية المدنية","إدارة شؤون الإقامة",
+      "الإدارة العامة للجماعات المحلية"
+    ]
+  },
+  {
+    name:"وزارة الشؤون الخارجية",
+    facilities:[
+      "الإدارة الدبلوماسية","الشؤون القنصلية",
+      "إدارة التعاون الدولي","إدارة شؤون المواطنين بالخارج"
+    ]
+  },
+  {
+    name:"وزارة العدل",
+    facilities:[
+      "المحاكم","النيابة العمومية","إدارة المصالح العدلية",
+      "إدارة المؤسسات الإصلاحية"
+    ]
+  },
+  {
+    name:"وزارة الدفاع والحماية الوطنية",
+    facilities:[
+      "القوات المسلحة","إدارة التجنيد",
+      "الخدمات الطبية العسكرية","إدارة الحماية الوطنية"
+    ]
+  },
+  {
+    name:"وزارة المالية",
+    facilities:[
+      "إدارة الضرائب","المحاسبة العمومية",
+      "إدارة الاستخلاص","إدارة أملاك الدولة"
+    ]
+  },
+  {
+    name:"وزارة الاقتصاد والاستثمار",
+    facilities:[
+      "وكالة الاستثمار","إدارة المؤسسات",
+      "إدارة التجارة","إدارة التخطيط الاقتصادي"
+    ]
+  },
+  {
+    name:"وزارة التربية",
+    facilities:[
+      "المدارس الابتدائية","المعاهد الثانوية",
+      "إدارة الامتحانات","إدارة الحياة المدرسية"
+    ]
+  },
+  {
+    name:"وزارة التعليم العالي والبحث العلمي",
+    facilities:[
+      "الجامعات","مراكز البحث العلمي",
+      "الخدمات الجامعية","إدارة المنح الجامعية"
+    ]
+  },
+  {
+    name:"وزارة الصحة",
+    facilities:[
+      "المستشفيات العمومية","مراكز الصحة الأساسية",
+      "إدارة الصحة الوقائية","إدارة الصيدلة والدواء"
+    ]
+  },
+  {
+    name:"وزارة الشؤون الاجتماعية",
+    facilities:[
+      "إدارة الضمان الاجتماعي","إدارة المساعدات الاجتماعية",
+      "مراكز الرعاية","إدارة شؤون الأسرة"
+    ]
+  },
+  {
+    name:"وزارة التشغيل وتنمية المهارات",
+    facilities:[
+      "مراكز التشغيل","مراكز التكوين المهني",
+      "إدارة التدريب","إدارة دعم المبادرات"
+    ]
+  },
+  {
+    name:"وزارة الفلاحة والموارد المائية",
+    facilities:[
+      "إدارة الإنتاج الفلاحي","إدارة الموارد المائية",
+      "إدارة الغابات","المصالح البيطرية"
+    ]
+  },
+  {
+    name:"وزارة البيئة والطاقة",
+    facilities:[
+      "إدارة البيئة","إدارة الطاقات المتجددة",
+      "إدارة حماية المحيط","إدارة الموارد الطبيعية"
+    ]
+  },
+  {
+    name:"وزارة النقل والبنية التحتية",
+    facilities:[
+      "النقل البري","النقل البحري","النقل الجوي",
+      "إدارة الطرقات والبنية التحتية"
+    ]
+  },
+  {
+    name:"وزارة الثقافة والسياحة والرياضة",
+    facilities:[
+      "إدارة الثقافة","إدارة التراث","إدارة السياحة",
+      "إدارة الرياضة والشباب"
+    ]
+  }
 ];
 
 const grid = document.getElementById("ministryGrid");
 const ministrySelect = document.getElementById("ministry");
 const facilitySelect = document.getElementById("facility");
 const detailsBox = document.getElementById("ministryDetails");
+
 const requestForm = document.getElementById("requestForm");
 const result = document.getElementById("result");
 const submitButton = document.getElementById("submitButton");
@@ -303,50 +481,62 @@ function addText(parent, tag, text) {
 }
 
 function renderMinistries() {
-  const query = document.getElementById("search").value.trim().toLowerCase();
+  const query = document.getElementById("search")
+    .value.trim().toLowerCase();
+
   grid.replaceChildren();
 
   ministries.forEach((ministry, index) => {
-    const searchable = (
-      ministry.name + " " + ministry.facilities.join(" ")
-    ).toLowerCase();
+    const searchable =
+      (ministry.name + " " + ministry.facilities.join(" "))
+      .toLowerCase();
 
     if (!searchable.includes(query)) return;
 
     const card = document.createElement("article");
     card.className = "card";
+
     addText(card, "h3", "🏛️ " + ministry.name);
     addText(card, "p", "عدد المرافق: " + ministry.facilities.length);
 
     const button = addText(card, "button", "عرض المرافق");
     button.type = "button";
     button.addEventListener("click", () => showMinistry(index));
+
     grid.appendChild(card);
   });
 
-  if (!grid.children.length) addText(grid, "p", "لم يتم العثور على نتائج.");
+  if (!grid.children.length) {
+    addText(grid, "p", "لم يتم العثور على نتائج.");
+  }
 }
 
 function showMinistry(index) {
   const ministry = ministries[index];
+
   detailsBox.replaceChildren();
   detailsBox.classList.remove("hidden");
+
   addText(detailsBox, "h2", ministry.name);
   addText(detailsBox, "p", "المرافق والإدارات التابعة:");
 
   ministry.facilities.forEach(facility => {
     const box = document.createElement("div");
     box.className = "facility";
+
     addText(box, "h4", "🏢 " + facility);
     addText(box, "p", "يمكنك تقديم مطلب متعلق بخدمات هذا المرفق.");
 
     const button = addText(box, "button", "تقديم مطلب لهذا المرفق");
     button.type = "button";
+
     button.addEventListener("click", () => {
       ministrySelect.value = ministry.name;
       updateFacilities();
       facilitySelect.value = facility;
-      document.getElementById("request").scrollIntoView({behavior:"smooth"});
+
+      document.getElementById("request")
+        .scrollIntoView({behavior:"smooth"});
     });
 
     detailsBox.appendChild(box);
@@ -354,12 +544,18 @@ function showMinistry(index) {
 }
 
 function updateFacilities() {
-  const selected = ministries.find(m => m.name === ministrySelect.value);
+  const selected = ministries.find(
+    m => m.name === ministrySelect.value
+  );
+
   facilitySelect.replaceChildren();
 
   const first = document.createElement("option");
   first.value = "";
-  first.textContent = selected ? "اختار المرفق" : "اختار الوزارة أولًا";
+  first.textContent = selected
+    ? "اختار المرفق"
+    : "اختار الوزارة أولًا";
+
   facilitySelect.appendChild(first);
 
   if (selected) {
@@ -379,21 +575,26 @@ ministries.forEach(ministry => {
   ministrySelect.appendChild(option);
 });
 
-document.getElementById("search").addEventListener("input", renderMinistries);
+document.getElementById("search")
+  .addEventListener("input", renderMinistries);
+
 ministrySelect.addEventListener("change", updateFacilities);
 renderMinistries();
 
+/* إنشاء رقم مرجعي */
 function makeReference() {
   const random = window.crypto && crypto.randomUUID
-    ? crypto.randomUUID().replaceAll("-", "").slice(0, 12).toUpperCase()
+    ? crypto.randomUUID().replaceAll("-", "").slice(0,12).toUpperCase()
     : Date.now().toString(36).toUpperCase() +
-      Math.random().toString(36).slice(2, 8).toUpperCase();
+      Math.random().toString(36).slice(2,8).toUpperCase();
 
   return "PL-" + random;
 }
 
+/* إرسال مطلب جديد */
 requestForm.addEventListener("submit", async event => {
   event.preventDefault();
+
   result.className = "message";
   result.textContent = "";
   submitButton.disabled = true;
@@ -409,7 +610,9 @@ requestForm.addEventListener("submit", async event => {
 
     if (!name || !email || !city || !ministry ||
         !facility || !service || !details) {
-      throw new Error("يرجى تعمير جميع الحقول واختيار المدينة والوزارة والمرفق.");
+      throw new Error(
+        "يرجى تعمير جميع الحقول واختيار المدينة والوزارة والمرفق."
+      );
     }
 
     result.textContent = "جارٍ إرسال المطلب...";
@@ -446,11 +649,10 @@ requestForm.addEventListener("submit", async event => {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("Supabase error:", response.status, errorText);
+      console.error("Supabase insert error:", response.status, errorText);
 
       throw new Error(
-        "تعذّر حفظ المطلب (HTTP " + response.status + "). " +
-        "تفاصيل الخطأ: " + errorText
+        "تعذّر حفظ المطلب (HTTP " + response.status + "). " + errorText
       );
     }
 
@@ -461,7 +663,7 @@ requestForm.addEventListener("submit", async event => {
       "المدينة: " + city + "\n" +
       "الوزارة: " + ministry + "\n" +
       "المرفق: " + facility + "\n" +
-      "احتفظ بالرقم المرجعي للمتابعة.";
+      "احتفظ بالرقم المرجعي والبريد الإلكتروني لمتابعة المطلب.";
 
     requestForm.reset();
     updateFacilities();
@@ -470,10 +672,282 @@ requestForm.addEventListener("submit", async event => {
     console.error(error);
     result.className = "message error";
     result.textContent = "❌ " + error.message;
+
   } finally {
     submitButton.disabled = false;
   }
 });
+
+/* أدوات خدمة المتابعة */
+const trackingForm = document.getElementById("trackingForm");
+const trackingMessage = document.getElementById("trackingMessage");
+const trackingResult = document.getElementById("trackingResult");
+const trackingData = document.getElementById("trackingData");
+const trackButton = document.getElementById("trackButton");
+const printArea = document.getElementById("printArea");
+
+let currentApplication = null;
+
+function statusLabel(status) {
+  const labels = {
+    pending: "جديد — في انتظار المعالجة",
+    received: "تم الاستلام",
+    in_progress: "قيد المعالجة",
+    under_review: "قيد الدراسة",
+    approved: "تمت الموافقة",
+    rejected: "مرفوض",
+    completed: "تمت المعالجة"
+  };
+
+  return labels[String(status || "").toLowerCase()]
+    || String(status || "غير محددة");
+}
+
+/* استخراج الوزارة والمرفق والخدمة من تفاصيل المطلب */
+function parseDetails(raw) {
+  const lines = String(raw || "").split(/\r?\n/);
+  const values = {};
+
+  for (const line of lines) {
+    const separator = line.indexOf(":");
+    if (separator < 0) continue;
+
+    const key = line.slice(0, separator).trim();
+    const value = line.slice(separator + 1).trim();
+    values[key] = value;
+  }
+
+  const descriptionLine = lines.find(
+    line => line.trim().startsWith("تفاصيل المطلب:")
+  );
+
+  return {
+    ministry: values["الوزارة"] || "",
+    facility: values["المرفق"] || "",
+    service: values["الخدمة"] || "",
+    description: descriptionLine
+      ? descriptionLine.slice(
+          descriptionLine.indexOf(":") + 1
+        ).trim()
+      : String(raw || "")
+  };
+}
+
+function formatDate(value) {
+  if (!value) return "غير متوفر";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return String(value);
+  }
+
+  return date.toLocaleString("ar-TN", {
+    dateStyle: "medium",
+    timeStyle: "short"
+  });
+}
+
+/* عرض معلومات المطلب بأمان باستعمال textContent */
+function renderApplication(app) {
+  const parsed = parseDetails(app.details);
+
+  const rows = [
+    ["الرقم المرجعي", app.reference_number],
+    ["الاسم الكامل", app.applicant_name],
+    ["البريد الإلكتروني", app.email],
+    ["المدينة", app.city],
+    ["الوزارة", parsed.ministry || "غير محددة"],
+    ["المرفق", parsed.facility || "غير محدد"],
+    ["نوع المطلب", app.application_type],
+    ["تفاصيل المطلب", parsed.description || app.details],
+    ["تاريخ الإيداع", formatDate(app.created_at)],
+    ["حالة المطلب", statusLabel(app.status)],
+    ["ردّ الإدارة", app.admin_response || "لم يصدر ردّ من الإدارة بعد"]
+  ];
+
+  trackingData.replaceChildren();
+
+  rows.forEach(([label, value]) => {
+    const p = document.createElement("p");
+    const strong = document.createElement("strong");
+
+    strong.textContent = label + ": ";
+    p.appendChild(strong);
+    p.appendChild(
+      document.createTextNode(String(value ?? "غير متوفر"))
+    );
+
+    trackingData.appendChild(p);
+  });
+
+  trackingResult.classList.remove("hidden");
+}
+
+/* البحث في Supabase باستعمال الدالة الآمنة */
+trackingForm.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  trackingResult.classList.add("hidden");
+  trackingData.replaceChildren();
+  currentApplication = null;
+
+  trackingMessage.className = "message";
+  trackingMessage.textContent = "جارٍ البحث عن المطلب...";
+  trackButton.disabled = true;
+
+  try {
+    const reference = document.getElementById("trackReference")
+      .value.trim();
+
+    const email = document.getElementById("trackEmail")
+      .value.trim();
+
+    if (!reference || !email) {
+      throw new Error("أدخل الرقم المرجعي والبريد الإلكتروني.");
+    }
+
+    const response = await fetch(
+      SUPABASE_URL + "/rest/v1/rpc/track_citizen_application_full",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_KEY,
+          "Authorization": "Bearer " + SUPABASE_KEY
+        },
+        body: JSON.stringify({
+          p_reference_number: reference,
+          p_email: email
+        })
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(
+        "Supabase tracking error:",
+        response.status,
+        errorText
+      );
+
+      throw new Error(
+        "تعذّرت متابعة المطلب (HTTP " + response.status +
+        "). تأكّد من إعداد الدالة track_citizen_application_full."
+      );
+    }
+
+    const data = await response.json();
+    const app = Array.isArray(data) ? data[0] : data;
+
+    if (!app) {
+      trackingMessage.className = "message error";
+      trackingMessage.textContent =
+        "لم نعثر على مطلب بهذه البيانات. تحقّق من الرقم المرجعي والبريد الإلكتروني.";
+      return;
+    }
+
+    currentApplication = app;
+    renderApplication(app);
+
+    trackingMessage.className = "message success";
+    trackingMessage.textContent = "✅ تم العثور على المطلب.";
+
+  } catch (error) {
+    console.error(error);
+    trackingMessage.className = "message error";
+    trackingMessage.textContent = "❌ " + error.message;
+
+  } finally {
+    trackButton.disabled = false;
+  }
+});
+
+/* تجهيز وثيقة الطباعة */
+function buildPrintDocument(kind) {
+  if (!currentApplication) return;
+
+  const app = currentApplication;
+  const parsed = parseDetails(app.details);
+
+  const rows = [
+    ["الرقم المرجعي", app.reference_number],
+    ["الاسم الكامل", app.applicant_name],
+    ["البريد الإلكتروني", app.email],
+    ["المدينة", app.city],
+    ["الوزارة", parsed.ministry || "غير محددة"],
+    ["المرفق", parsed.facility || "غير محدد"],
+    ["نوع المطلب", app.application_type],
+    ["تفاصيل المطلب", parsed.description || app.details],
+    ["تاريخ الإيداع", formatDate(app.created_at)]
+  ];
+
+  if (kind === "tracking") {
+    rows.push(
+      ["حالة المطلب", statusLabel(app.status)],
+      ["ردّ الإدارة", app.admin_response || "لم يصدر ردّ من الإدارة بعد"]
+    );
+  }
+
+  const title = kind === "receipt"
+    ? "وصل إيداع مطلب إلكتروني"
+    : "نتيجة متابعة مطلب إلكتروني";
+
+  printArea.replaceChildren();
+
+  const wrapper = document.createElement("div");
+  wrapper.dir = "rtl";
+
+  addText(wrapper, "h1", "مملكة PeaceLand");
+  addText(wrapper, "h2", title);
+  addText(wrapper, "p", "بوابة الوزارات والخدمات الحكومية");
+
+  rows.forEach(([label, value]) => {
+    const p = document.createElement("p");
+    const strong = document.createElement("strong");
+
+    strong.textContent = label + ": ";
+    p.appendChild(strong);
+    p.appendChild(
+      document.createTextNode(String(value ?? "غير متوفر"))
+    );
+
+    wrapper.appendChild(p);
+  });
+
+  const footer = document.createElement("div");
+  footer.className = "print-footer";
+
+  addText(
+    footer,
+    "p",
+    "تاريخ الطباعة: " + formatDate(new Date().toISOString())
+  );
+
+  addText(
+    footer,
+    "p",
+    "وثيقة مستخرجة من بوابة الخدمات الإلكترونية لمملكة PeaceLand."
+  );
+
+  addText(
+    footer,
+    "p",
+    "هذه الوثيقة لا تُعدّ مصادقة رسمية أو قرارًا إداريًا مستقلًا."
+  );
+
+  wrapper.appendChild(footer);
+  printArea.appendChild(wrapper);
+
+  window.print();
+}
+
+document.getElementById("printReceipt")
+  .addEventListener("click", () => buildPrintDocument("receipt"));
+
+document.getElementById("printTracking")
+  .addEventListener("click", () => buildPrintDocument("tracking"));
 </script>
+
 </body>
 </html>
