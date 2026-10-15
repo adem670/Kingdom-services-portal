@@ -864,8 +864,12 @@ trackingForm.addEventListener("submit", async event => {
 });
 
 /* تجهيز وثيقة الطباعة */
+/* نظام طباعة وصل الإيداع والرد الإداري */
 function buildPrintDocument(kind) {
-  if (!currentApplication) return;
+  if (!currentApplication) {
+    alert("يرجى البحث عن المطلب أولًا قبل الطباعة.");
+    return;
+  }
 
   const app = currentApplication;
   const parsed = parseDetails(app.details);
@@ -885,7 +889,10 @@ function buildPrintDocument(kind) {
   if (kind === "tracking") {
     rows.push(
       ["حالة المطلب", statusLabel(app.status)],
-      ["ردّ الإدارة", app.admin_response || "لم يصدر ردّ من الإدارة بعد"]
+      [
+        "ردّ الإدارة",
+        app.admin_response || "لم يصدر ردّ من الإدارة بعد"
+      ]
     );
   }
 
@@ -893,55 +900,186 @@ function buildPrintDocument(kind) {
     ? "وصل إيداع مطلب إلكتروني"
     : "نتيجة متابعة مطلب إلكتروني";
 
-  printArea.replaceChildren();
+  /*
+   * فتح نافذة مستقلة للطباعة حتى لا يتأثر المستند
+   * بإخفاء عناصر الموقع أو بتنسيق الصفحة الرئيسية.
+   */
+  let printWindow = null;
 
-  const wrapper = document.createElement("div");
-  wrapper.dir = "rtl";
+  try {
+    printWindow = window.open("", "_blank");
+  } catch (error) {
+    console.warn("تعذّر فتح نافذة الطباعة:", error);
+  }
 
-  addText(wrapper, "h1", "مملكة PeaceLand");
-  addText(wrapper, "h2", title);
-  addText(wrapper, "p", "بوابة الوزارات والخدمات الحكومية");
+  /*
+   * إذا منع المتصفح فتح نافذة جديدة، نستعمل
+   * منطقة الطباعة الموجودة في الصفحة.
+   */
+  if (!printWindow) {
+    printArea.replaceChildren();
 
-  rows.forEach(([label, value]) => {
-    const p = document.createElement("p");
-    const strong = document.createElement("strong");
+    const wrapper = document.createElement("div");
+    wrapper.dir = "rtl";
 
-    strong.textContent = label + ": ";
-    p.appendChild(strong);
-    p.appendChild(
-      document.createTextNode(String(value ?? "غير متوفر"))
+    addText(wrapper, "h1", "مملكة PeaceLand");
+    addText(wrapper, "h2", title);
+    addText(
+      wrapper,
+      "p",
+      "بوابة الوزارات والخدمات الحكومية"
     );
 
-    wrapper.appendChild(p);
-  });
+    rows.forEach(([label, value]) => {
+      const p = document.createElement("p");
+      const strong = document.createElement("strong");
 
-  const footer = document.createElement("div");
-  footer.className = "print-footer";
+      strong.textContent = label + ": ";
+      p.appendChild(strong);
+      p.appendChild(
+        document.createTextNode(String(value ?? "غير متوفر"))
+      );
 
-  addText(
-    footer,
-    "p",
-    "تاريخ الطباعة: " + formatDate(new Date().toISOString())
-  );
+      wrapper.appendChild(p);
+    });
 
-  addText(
-    footer,
-    "p",
-    "وثيقة مستخرجة من بوابة الخدمات الإلكترونية لمملكة PeaceLand."
-  );
+    addText(
+      wrapper,
+      "p",
+      "تاريخ الطباعة: " +
+      formatDate(new Date().toISOString())
+    );
 
-  addText(
-    footer,
-    "p",
-    "هذه الوثيقة لا تُعدّ مصادقة رسمية أو قرارًا إداريًا مستقلًا."
-  );
+    printArea.appendChild(wrapper);
 
-  wrapper.appendChild(footer);
-  printArea.appendChild(wrapper);
+    alert(
+      "لم يتم فتح نافذة الطباعة. جرّب فتح الموقع في Safari أو Chrome، ثم أعد المحاولة."
+    );
 
-  window.print();
+    return;
+  }
+
+  /*
+   * إنشاء مستند مستقل، مع إدراج المعلومات كنص
+   * حتى لا تُفسَّر بيانات المطلب على أنها HTML.
+   */
+  try {
+    const doc = printWindow.document;
+
+    doc.open();
+    doc.write(
+      '<!DOCTYPE html>' +
+      '<html lang="ar" dir="rtl">' +
+      '<head>' +
+      '<meta charset="UTF-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<title>' + title + '</title>' +
+      '<style>' +
+      'body{' +
+        'font-family:Tahoma,Arial,sans-serif;' +
+        'color:#20342b;' +
+        'background:#fff;' +
+        'padding:25px;' +
+        'line-height:1.9;' +
+      '}' +
+      'header{' +
+        'text-align:center;' +
+        'border-bottom:3px solid #d5b46a;' +
+        'padding-bottom:15px;' +
+        'margin-bottom:25px;' +
+      '}' +
+      'h1{color:#103c2e;font-size:26px;}' +
+      'h2{color:#185440;font-size:21px;}' +
+      '.row{' +
+        'padding:9px 0;' +
+        'border-bottom:1px solid #ddd;' +
+        'overflow-wrap:anywhere;' +
+        'white-space:pre-wrap;' +
+      '}' +
+      '.label{font-weight:bold;color:#103c2e;}' +
+      '.footer{' +
+        'margin-top:30px;' +
+        'padding-top:15px;' +
+        'border-top:2px solid #d5b46a;' +
+        'font-size:12px;' +
+      '}' +
+      '.seal{' +
+        'margin-top:35px;' +
+        'text-align:left;' +
+      '}' +
+      '@page{margin:15mm;}' +
+      '@media print{' +
+        'body{padding:0;}' +
+        'button{display:none;}' +
+      '}' +
+      '</style>' +
+      '</head>' +
+      '<body>' +
+      '<header>' +
+        '<h1>مملكة PeaceLand</h1>' +
+        '<h2>' + title + '</h2>' +
+        '<p>بوابة الوزارات والخدمات الحكومية</p>' +
+      '</header>' +
+      '<main id="documentContent"></main>' +
+      '<div class="footer">' +
+        '<p>وثيقة مستخرجة من بوابة الخدمات الإلكترونية لمملكة PeaceLand.</p>' +
+        '<p>تاريخ الطباعة: ' +
+          formatDate(new Date().toISOString()) +
+        '</p>' +
+        '<p>هذه الوثيقة لا تُعدّ مصادقة رسمية أو قرارًا إداريًا مستقلًا.</p>' +
+        '<div class="seal">الإدارة المختصة: ______________</div>' +
+      '</div>' +
+      '</body>' +
+      '</html>'
+    );
+    doc.close();
+
+    const content = doc.getElementById("documentContent");
+
+    rows.forEach(([label, value]) => {
+      const row = doc.createElement("div");
+      row.className = "row";
+
+      const labelElement = doc.createElement("span");
+      labelElement.className = "label";
+      labelElement.textContent = label + ": ";
+
+      row.appendChild(labelElement);
+      row.appendChild(
+        doc.createTextNode(String(value ?? "غير متوفر"))
+      );
+
+      content.appendChild(row);
+    });
+
+    /*
+     * تأخير بسيط للسماح للمتصفح بتجهيز مستند الطباعة.
+     */
+    printWindow.focus();
+
+    printWindow.setTimeout(() => {
+      try {
+        printWindow.print();
+      } catch (error) {
+        console.error("Print error:", error);
+        alert(
+          "تعذّرت الطباعة تلقائيًا. استعمل قائمة المتصفح واختر طباعة."
+        );
+      }
+    }, 700);
+
+  } catch (error) {
+    console.error("Print document error:", error);
+
+    try {
+      printWindow.close();
+    } catch (_) {}
+
+    alert(
+      "تعذّر إعداد وثيقة الطباعة. أعد المحاولة باستعمال Safari أو Chrome."
+    );
+  }
 }
-
 document.getElementById("printReceipt")
   .addEventListener("click", () => buildPrintDocument("receipt"));
 
